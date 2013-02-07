@@ -140,7 +140,6 @@ public class MainActivity extends Activity {
             Process proc = Runtime.getRuntime().exec(
             									new String[] { "su", "-c", command }
             										);
-            wait(10);
             proc.waitFor();
         } catch (Exception ex) {
             Log.i("PowerMenu", "Could not perform action", ex);

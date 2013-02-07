@@ -1,10 +1,20 @@
 <resources>
-    <string name="app_name">PowerMenu</string>
+    <string name="app_name">Power Menu</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Power Menu</string>
     <string name="ask_before">Confirmation Dailog?</string>
     <string name="ask_before_description">Shows a dialog before performing action</string>
-    <string name="settings">Settings</string>
+    <string name="settings">Preferences</string>
 	<string name="dialog_true">Yes</string>
 	<string name="dialog_false">No</string>
+	<string name="settings_text">
+	    Reboot: Restarts the phone.\n 
+	    Recovery: Restarts the phone into recovery.\n
+	    Download: Restarts the download(bootloader).\n
+	    Download: Restarts the download(bootloader).\n
+	    Hot Boot: Restarts the Android GUI processes/threads.\n
+	    Shutdown: Shutdowns the phone.
+	</string>
+	<string name="noRootMessage">I was not able to get root access.</string>
+	
 </resources>

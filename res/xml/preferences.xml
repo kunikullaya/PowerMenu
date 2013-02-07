@@ -5,4 +5,7 @@
 	android:title="@string/ask_before" 
 	android:summary="@string/ask_before_description"
     android:defaultValue="true" /> 
+    <PreferenceCategory
+    android:title="What are the options?"
+    android:layout="@layout/settings_message"/>
 </PreferenceScreen>
