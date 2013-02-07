@@ -1,0 +1,1 @@
+I wanted to way to go to download and recovery mode on my SIII. My rooted stock does not have that option, So figured why not write one?

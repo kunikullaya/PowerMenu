@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<resources>  
+	<string-array name="optionArray">  
+		<item>Reboot</item>  
+		<item>Reboot to recovery</item>  
+		<item>Reboot to download</item> 
+		<item>Hot Reboot</item>  
+		<item>Shutdown</item>   
+	 </string-array>
+</resources>

@@ -1,8 +1,10 @@
 <resources>
-
     <string name="app_name">PowerMenu</string>
-    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">Extended Power Menu</string>
-
+    <string name="title_activity_main">Power Menu</string>
+    <string name="ask_before">Confirmation Dailog?</string>
+    <string name="ask_before_description">Shows a dialog before performing action</string>
+    <string name="settings">Settings</string>
+	<string name="dialog_true">Yes</string>
+	<string name="dialog_false">No</string>
 </resources>
