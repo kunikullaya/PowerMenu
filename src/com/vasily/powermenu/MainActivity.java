@@ -1,13 +1,10 @@
 package com.vasily.powermenu;
- 
+
 import android.os.Bundle; 
 import android.preference.PreferenceManager;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.Activity;  
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.util.Log; 
+import android.content.SharedPreferences; 
 import android.view.Menu; 
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter; 
 import android.widget.ListView;  
+import org.rootcommands.Toolbox;
+
 
 public class MainActivity extends Activity {
 	
@@ -37,18 +36,26 @@ public class MainActivity extends Activity {
  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, android.R.id.text1, listViewItems);
 		listView.setAdapter(adapter);
-		CheckPref();
-		listView.setOnItemClickListener(new OnItemClickListener() {
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) { 
-			actionID = position;
-			if(confirmBeforeAction) 
-				confirmActionDialog();
-			else
-				doTheAction(); 
- 		}
-		});
+		if(Utils.isAndroidRooted(MainActivity.this))
+		{
+			CheckPref();
+			listView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) { 
+				actionID = position;
+				if(confirmBeforeAction) 
+				{
+					if(Utils.confirmActionDialog(MainActivity.this,listViewItems[actionID].toString()))
+						doTheAction();
+				}
+				else
+						doTheAction();
+	 		}
+			});
+		}
 	 }
+    
+   
     
     /**
      * Loads the preferences. 
@@ -92,58 +99,32 @@ public class MainActivity extends Activity {
         CheckPref();
     }
   
-    /**
-     * Displays a Confirmation Dialog before doing an action. 
-     */
-     private boolean confirmActionDialog(){
-    	AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-	   	 builder.setTitle("Confirm " + listViewItems[actionID].toString());
-	   	 builder.setPositiveButton(R.string.dialog_true, new DialogInterface.OnClickListener() {
-   		 public void onClick(DialogInterface dialog, int id) {
-   	            	doTheAction();
-   	            }
-   	        });
-   	 builder.setNegativeButton(R.string.dialog_false, new DialogInterface.OnClickListener() {
-   	            public void onClick(DialogInterface dialog, int id) {
-   	              dialog.dismiss();
-   	            }
-   	        });
-   	 AlertDialog dialog = builder.create();
-   	 dialog.show();
-   	 return false;
-    }
-    
+   
+  
  /**
   * Performs one of the 5 actions.  
   */
     private boolean doTheAction(){
-    	String command = "";
+    	int command = 0;
     	switch (actionID)
         {
         	case 0: 
-        		command = "reboot";
+        		command = Toolbox.REBOOT_REBOOT;
         		break;
         	case 1:
-        		command = "reboot recovery";
+        		command = Toolbox.REBOOT_RECOVERY;
         		break;
         	case 2:
-        		command = "reboot download";
+        		command = -1;
         		break;
         	case 3:
-        		command = "busybox killall system_server ";
+        		command = Toolbox.REBOOT_HOTREBOOT;
         		break;	
         	case 4:
-        		command = "reboot -p";
+        		command = Toolbox.REBOOT_SHUTDOWN;
         		break;
         }
-    	try {
-            Process proc = Runtime.getRuntime().exec(
-            									new String[] { "su", "-c", command }
-            										);
-            proc.waitFor();
-        } catch (Exception ex) {
-            Log.i("PowerMenu", "Could not perform action", ex);
-        }
+    	 Utils.ExecuteCommand(command);
     	return false;
       }
   }

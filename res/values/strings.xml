@@ -7,14 +7,10 @@
     <string name="settings">Preferences</string>
 	<string name="dialog_true">Yes</string>
 	<string name="dialog_false">No</string>
-	<string name="settings_text">
-	    Reboot: Restarts the phone.\n 
-	    Recovery: Restarts the phone into recovery.\n
-	    Download: Restarts the download(bootloader).\n
-	    Download: Restarts the download(bootloader).\n
-	    Hot Boot: Restarts the Android GUI processes/threads.\n
-	    Shutdown: Shutdowns the phone.
+	<string name="dialog_exit">Exit</string>
+	<string name="settings_text">Reboot: Reboots the phone.\n Recovery: Reboot the phone into recovery mode.\n
+	    Download: Reboot the phone into download mode.\n Hot Boot: Reboot the Android GUI processes/threads.\n Shutdown: Power off the phone.
 	</string>
 	<string name="noRootMessage">I was not able to get root access.</string>
-	
+	<string name="no_root_title">Needs Root to Run</string>
 </resources>
