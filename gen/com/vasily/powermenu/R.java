@@ -39,8 +39,7 @@ public final class R {
         public static final int dialog_false=0x7f060007;
         public static final int dialog_true=0x7f060006;
         public static final int menu_settings=0x7f060001;
-        public static final int noRootMessage=0x7f06000a;
-        public static final int no_root_title=0x7f06000b;
+        public static final int no_root_title=0x7f06000a;
         public static final int settings=0x7f060005;
         public static final int settings_text=0x7f060009;
         public static final int title_activity_main=0x7f060002;

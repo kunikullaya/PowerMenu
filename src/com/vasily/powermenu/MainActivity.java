@@ -30,28 +30,28 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(Utils.checkIfRooted(MainActivity.this))
+		{
         setContentView(R.layout.activity_main);
         ListView listView = (ListView) findViewById(R.id.mylist);
         listViewItems = getResources().getStringArray(R.array.optionArray); 
  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, android.R.id.text1, listViewItems);
 		listView.setAdapter(adapter);
-		if(Utils.isAndroidRooted(MainActivity.this))
-		{
-			CheckPref();
-			listView.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view, int position,
-					long id) { 
-				actionID = position;
-				if(confirmBeforeAction) 
-				{
-					if(Utils.confirmActionDialog(MainActivity.this,listViewItems[actionID].toString()))
-						doTheAction();
-				}
-				else
-						doTheAction();
-	 		}
-			});
+		CheckPref();
+		listView.setOnItemClickListener(new OnItemClickListener() {
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) { 
+			actionID = position;
+			if(confirmBeforeAction) 
+			{
+				if(Utils.confirmActionDialog(MainActivity.this,listViewItems[actionID].toString()))
+					doTheAction();
+			}
+			else
+					doTheAction();
+ 		}
+		});
 		}
 	 }
     

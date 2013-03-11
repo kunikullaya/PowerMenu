@@ -14,20 +14,27 @@ public class Utils {
 	 
 	 
 	 public static void ExecuteCommand(int command){
+		 Process proc = null;
 		 try {
 			 if(command == -1){
-				 Process proc = Runtime.getRuntime().exec("su -c reboot download");
+				 proc = Runtime.getRuntime().exec("su -c reboot download");
 				 proc.waitFor();
-			 }else{
+ 			 }else{
 				 Shell rootShell = Shell.startRootShell();
 	             Toolbox tb = new Toolbox(rootShell);
 	             tb.reboot(command);
 			 }
-		 } catch (Exception ex) {
+		 } 
+		 catch (IllegalThreadStateException e)
+		  {
+			 proc.destroy();
+		   }
+		 catch (Exception ex) {
 	            Log.i("PowerMenu", "Could not perform action", ex);
 	        }
      }
 	 
+ 
 	 /**
      * Displays a Confirmation Dialog before doing an action. 
      */
@@ -50,9 +57,9 @@ public class Utils {
    	 return result;
     }
      
-     public static boolean isAndroidRooted(final Activity activity) {
+     public static boolean checkIfRooted(final Activity activity) {
          boolean rootAccess = false;
-         if (RootCommands.rootAccessGiven()) {
+         if (RootCommands.rootAccessGiven()) { 
  			 rootAccess = true;
              } else {
                  AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -63,7 +70,7 @@ public class Utils {
                          new DialogInterface.OnClickListener() {
                              @Override
                              public void onClick(DialogInterface dialog, int which) {
-                            	 activity.finish(); // finish current activity, means exiting app
+                            	 activity.finish();  
                              }
                          });
 
@@ -71,5 +78,5 @@ public class Utils {
                  alert.show();
              }
  	     return rootAccess;
-     }
- }
+     } 
+}
