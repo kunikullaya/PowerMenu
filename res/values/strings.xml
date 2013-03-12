@@ -8,8 +8,10 @@
 	<string name="dialog_true">Yes</string>
 	<string name="dialog_false">No</string>
 	<string name="dialog_exit">Exit</string>
-	<string name="settings_text">\n Reboot: Reboots the phone.\n Recovery: Reboot the phone into recovery mode.\n
-	    Download: Reboot the phone into download mode.\n Hot Boot: Reboot the Android GUI processes/threads.\n Shutdown: Power off the phone.
+	<string name="settings_text">Reboot: Reboots the phone.\n Recovery: Reboot the phone into recovery mode.\n
+	    Download: Reboot the phone into download mode.\n Hot Boot: Restarts the Android GUI processes.\n Shutdown: Power off the phone.
 	</string> 
 	<string name="no_root_title">Root Required</string>
+	<string name="preference_category1">Preference...</string>
+	<string name="preference_category2">Option Details...</string>
 </resources>

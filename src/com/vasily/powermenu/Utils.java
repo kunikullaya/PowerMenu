@@ -1,65 +1,33 @@
 package com.vasily.powermenu;
 
+import com.stericson.RootTools.RootTools; 
+import com.stericson.RootTools.execution.CommandCapture;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.util.Log;
-import org.rootcommands.RootCommands;
-import org.rootcommands.Shell;
-import org.rootcommands.Toolbox;
+import android.util.Log; 
 
 public class Utils {
 
-	private static boolean result;
+	
 	 
-	 
-	 public static void ExecuteCommand(int command){
-		 Process proc = null;
-		 try {
-			 if(command == -1){
-				 proc = Runtime.getRuntime().exec("su -c reboot download");
-				 proc.waitFor();
- 			 }else{
-				 Shell rootShell = Shell.startRootShell();
-	             Toolbox tb = new Toolbox(rootShell);
-	             tb.reboot(command);
-			 }
-		 } 
-		 catch (IllegalThreadStateException e)
-		  {
-			 proc.destroy();
-		   }
-		 catch (Exception ex) {
+	 public static boolean ExecuteCommand(String command ){
+		  try {
+			   
+			 CommandCapture rootCommand = new CommandCapture(0,command);
+			 RootTools.getShell(true).add(rootCommand).waitForFinish(); 
+	 	 	} 
+	 	 catch (Exception ex) {
 	            Log.i("PowerMenu", "Could not perform action", ex);
-	        }
-     }
-	 
+	        } 
+	   return false;
+	 } 
  
-	 /**
-     * Displays a Confirmation Dialog before doing an action. 
-     */
-     public static boolean confirmActionDialog(final Activity activity, String action ){
-    	 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-	   	 builder.setTitle("Confirm " + action);
-	   	 builder.setPositiveButton(R.string.dialog_true, new DialogInterface.OnClickListener() {
-   		 public void onClick(DialogInterface dialog, int id) {
-   			 	result = true;
-   	            }
-   	        });
-   	 builder.setNegativeButton(R.string.dialog_false, new DialogInterface.OnClickListener() {
-   	            public void onClick(DialogInterface dialog, int id) {
-   	            	result = false;
-   	            	dialog.dismiss();
-   	            }
-   	        });
-   	 AlertDialog dialog = builder.create();
-   	 dialog.show();
-   	 return result;
-    }
      
      public static boolean checkIfRooted(final Activity activity) {
          boolean rootAccess = false;
-         if (RootCommands.rootAccessGiven()) { 
+         if (RootTools.isAccessGiven()) { 
  			 rootAccess = true;
              } else {
                  AlertDialog.Builder builder = new AlertDialog.Builder(activity);

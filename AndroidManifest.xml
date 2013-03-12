@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vasily.powermenu"
-    android:versionCode="1"
+    android:versionCode="2"
     android:versionName="1.0" >
     <uses-sdk android:minSdkVersion="14" android:maxSdkVersion="17" android:targetSdkVersion="17" />
     <application
@@ -9,7 +9,7 @@
         android:theme="@style/AppTheme" 
         android:allowBackup="false">
         <activity
-            android:name=".MainActivity"
+            android:name=".PowerMenuActivity"
             android:label="@string/title_activity_main"  >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
