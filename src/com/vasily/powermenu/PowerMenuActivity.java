@@ -2,16 +2,11 @@ package com.vasily.powermenu;
 
 import com.stericson.RootTools.RootTools; 
 
-import android.os.Bundle; 
-import android.preference.PreferenceManager;
+import android.os.Bundle;  
 import android.app.Activity;  
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences; 
-import android.util.Log;
-import android.view.Menu; 
-import android.view.MenuItem;
+import android.content.DialogInterface; 
+import android.util.Log; 
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -39,30 +34,24 @@ public class PowerMenuActivity extends Activity {
 	        setContentView(R.layout.activity_main);
 	        ListView listView = (ListView) findViewById(R.id.mylist);
 	        listViewItems = getResources().getStringArray(R.array.optionArray); 
+	        if(!RootTools.isBusyboxAvailable()){
+	        	listViewItems[3] = getResources().getString(R.string.missingBusyBoxTitle);
+	        }
 	 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 					android.R.layout.simple_list_item_1, android.R.id.text1, listViewItems);
 			listView.setAdapter(adapter);
-			if(!RootTools.isBusyboxAvailable()){
-				listView.getChildAt(3).setEnabled(false); 
-			}
-			CheckPref();
 			listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) { 
-				actionID = position;
-				if(showPopup) 
-				{
+					actionID = position;
 					Log.d("Confirm Before Action:",String.valueOf(showPopup));
-					confirmAndDoDialog(listViewItems[actionID].toString());
- 				}
-				else
-					doTheAction();
-			 	 
-	 		}
+		 			confirmAndDoDialog(listViewItems[actionID].toString());
+			}
 			});
 		}
 	 }
     
+   
    
     /**
      * Displays a Confirmation Dialog before doing an action. 
@@ -85,50 +74,7 @@ public class PowerMenuActivity extends Activity {
    	 return result;
     }
     
-    /**
-     * Loads the preferences. 
-     */
-    private void CheckPref(){
-    	SharedPreferences myPref   = PreferenceManager.getDefaultSharedPreferences(PowerMenuActivity.this);
-    	showPopup = myPref.getBoolean("askBeforePerformAction",true);
-    }			 
-    
-    /**
-     * Inflates the option menu
-     */
-    @Override
-	public boolean onCreateOptionsMenu(Menu menu) { 
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
-	}
-    
-    /**
-     * based on the option selected some action is performed.
-     * Since I have just 1 action(Starting Settings Activity) This method starts an Activity
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_settings:
-            	startActivityForResult(new Intent(this, SetPreferenceActivity.class),0);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-    
-    /**
-     * Gets the result from the SetPreferenceActivity and checks the preferences.
-     * I'm not really sure if this is needed. But I'm going to keep it for now.
-     */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        CheckPref();
-    }
-  
-   
-  
+     
  /**
   * Performs one of the 5 actions.  
   */
