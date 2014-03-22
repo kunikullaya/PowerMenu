@@ -9,9 +9,6 @@ import android.content.DialogInterface;
 import android.util.Log; 
 
 public class Utils {
-
-	
-	 
 	 public static boolean ExecuteCommand(String command ){
 		  try {
 			   

@@ -1,17 +1,22 @@
 package com.vasily.powermenu;
 
 import com.stericson.RootTools.RootTools; 
-
+ 
 import android.os.Bundle;  
 import android.app.Activity;  
 import android.app.AlertDialog;
 import android.content.DialogInterface; 
-import android.util.Log; 
+import android.content.SharedPreferences;  
+import android.view.Menu;  
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter; 
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;   
+import android.widget.Switch; 
 
 
 public class PowerMenuActivity extends Activity {
@@ -23,6 +28,7 @@ public class PowerMenuActivity extends Activity {
 	private int actionID;
 	private boolean showPopup = true;
 	 private static boolean result;
+	 private Switch preferenceSwitch;
 	/**
      * Need to redo this piece of code. 
      */
@@ -34,25 +40,31 @@ public class PowerMenuActivity extends Activity {
 	        setContentView(R.layout.activity_main);
 	        ListView listView = (ListView) findViewById(R.id.mylist);
 	        listViewItems = getResources().getStringArray(R.array.optionArray); 
-	        if(!RootTools.isBusyboxAvailable()){
-	        	listViewItems[3] = getResources().getString(R.string.missingBusyBoxTitle);
-	        }
 	 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 					android.R.layout.simple_list_item_1, android.R.id.text1, listViewItems);
 			listView.setAdapter(adapter);
-			listView.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view, int position,
-					long id) { 
-					actionID = position;
-					Log.d("Confirm Before Action:",String.valueOf(showPopup));
-		 			confirmAndDoDialog(listViewItems[actionID].toString());
-			}
-			});
+			if(!RootTools.isBusyboxAvailable()){
+	        	listViewItems[3] = getResources().getString(R.string.missingBusyBoxTitle);
+	        }
+			listView.setOnItemClickListener(listViewItemClickHandler);
+			
 		}
 	 }
     
    
-   
+    OnItemClickListener listViewItemClickHandler = new OnItemClickListener() {
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) { 
+				actionID = position;
+				if(showPopup){
+					confirmAndDoDialog(listViewItems[actionID].toString());
+				}
+				else{
+					doTheAction();
+	 			}
+		}
+    };
+		
     /**
      * Displays a Confirmation Dialog before doing an action. 
      */
@@ -73,8 +85,64 @@ public class PowerMenuActivity extends Activity {
    	 dialog.show();
    	 return result;
     }
+   
+    
+    OnCheckedChangeListener preferenceSwitchHandler = new OnCheckedChangeListener() {
+    		@Override
+		public void onCheckedChanged(CompoundButton btnName, boolean value) {
+			SharedPreferences.Editor editor = getSharedPreferences("com.vasily.powermenu", MODE_PRIVATE).edit();
+             if(value)
+             {
+                 editor.putBoolean("askBeforePerformAction", true);
+                 editor.commit();
+             }else  
+             {
+                 editor.putBoolean("askBeforePerformAction", false);
+                 editor.commit();
+                
+             }
+             SharedPreferences sharedPref = getSharedPreferences("com.vasily.powermenu", MODE_PRIVATE);
+             showPopup = sharedPref.getBoolean("askBeforePerformAction", true);
+			
+		}
+      };
+   
+    
+    /**
+      * Inflates the option menu
+       */
+    @Override
+ 	public boolean onCreateOptionsMenu(Menu menu) { 
+    	getMenuInflater().inflate(R.menu.activity_main, menu);
+    	 
+        // Get widget's instance
+     	preferenceSwitch = (Switch)menu.findItem(R.id.menu_settings).getActionView();
+		preferenceSwitch.setOnCheckedChangeListener(this.preferenceSwitchHandler);
+	    SharedPreferences sharedPref = getSharedPreferences("com.vasily.powermenu", MODE_PRIVATE);
+ 		showPopup = sharedPref.getBoolean("askBeforePerformAction", true);
+ 		preferenceSwitch.setChecked(sharedPref.getBoolean("askBeforePerformAction", true)); 
+        return super.onCreateOptionsMenu(menu); 
+ 		 
+  }
+    
     
      
+    /**
+      * based on the option selected some action is performed.
+       * Since I have just 1 action(Starting Settings Activity) This method starts an Activity
+       */
+      @Override
+      public boolean onOptionsItemSelected(MenuItem item) {
+    	  switch (item.getItemId()) {
+	          case R.id.menu_settings:
+	              break;
+	          default:
+	              return super.onOptionsItemSelected(item);
+	      }
+		return true;
+     }
+      
+	 
  /**
   * Performs one of the 5 actions.  
   */
@@ -98,7 +166,8 @@ public class PowerMenuActivity extends Activity {
         		command = Commands.SHUTDOWN;
         		break;
         }
-    	 Utils.ExecuteCommand(command);
+    	Utils.ExecuteCommand(command);
     	return false;
       }
-  }
+  
+}
