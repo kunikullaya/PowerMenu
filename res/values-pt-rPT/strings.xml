@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Power Menu</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Power Menu</string>
+    <string name="ask_before">Confirmação dailog?</string>
+    <string name="ask_before_description">Mostra uma janela antes de realizar a ação</string>
+    <string name="settings">Preferências</string>
+	<string name="dialog_true">Sim</string>
+	<string name="dialog_ok">OK</string>
+	<string name="dialog_false">não</string>
+	<string name="dialog_exit">Saída</string> 
+	<string name="no_root_title">Root Obrigatório</string> 
+	<string name="missingBusyBoxTitle">Falta Busybox (Reiniciar Normal)</string>
+	<string name="missingBusyBoxMessage">HotReboot precisa busybox, fazer um reboot normal.</string>
+	<string name="confirmation_text">Confirm </string>
+</resources>

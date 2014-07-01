@@ -8,12 +8,9 @@
 	<string name="dialog_true">Yes</string>
 	<string name="dialog_ok">OK</string>
 	<string name="dialog_false">No</string>
-	<string name="dialog_exit">Exit</string>
-	<string name="settings_text">Reboot: Reboots the phone.\n Recovery: Reboot the phone into recovery mode.\n
-	    Download: Reboot the phone into download mode.\n Hot Boot: Restarts the Android GUI processes.\n Shutdown: Power off the phone.
-	</string> 
+	<string name="dialog_exit">Exit</string> 
 	<string name="no_root_title">Root Required</string> 
 	<string name="missingBusyBoxTitle">Missing Busybox(Normal Reboot)</string>
 	<string name="missingBusyBoxMessage">HotReboot needs busybox,Doing a normal reboot.</string>
-	
+	<string name="confirmation_text">Confirm </string>
 </resources>

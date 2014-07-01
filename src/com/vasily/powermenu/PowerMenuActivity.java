@@ -113,10 +113,10 @@ public class PowerMenuActivity extends Activity {
        */
     @Override
  	public boolean onCreateOptionsMenu(Menu menu) { 
-    	getMenuInflater().inflate(R.menu.activity_main, menu);
+    	getMenuInflater().inflate(R.menu.menu_settings, menu);
     	 
         // Get widget's instance
-     	preferenceSwitch = (Switch)menu.findItem(R.id.menu_settings).getActionView();
+     	preferenceSwitch = (Switch)menu.findItem(R.id.menu_item_switch).getActionView().findViewById(R.id.preference_switch);;
 		preferenceSwitch.setOnCheckedChangeListener(this.preferenceSwitchHandler);
 	    SharedPreferences sharedPref = getSharedPreferences("com.vasily.powermenu", MODE_PRIVATE);
  		showPopup = sharedPref.getBoolean("askBeforePerformAction", true);
@@ -134,7 +134,7 @@ public class PowerMenuActivity extends Activity {
       @Override
       public boolean onOptionsItemSelected(MenuItem item) {
     	  switch (item.getItemId()) {
-	          case R.id.menu_settings:
+	          case R.id.menu_item_switch:
 	              break;
 	          default:
 	              return super.onOptionsItemSelected(item);
@@ -160,9 +160,12 @@ public class PowerMenuActivity extends Activity {
         		command = Commands.DOWNLOAD;
         		break;
         	case 3:
+        		command = Commands.BOOTLOADER;
+        		break;
+        	case 4:
         		command = Commands.HOTBOOT;
         		break;	
-        	case 4:
+        	case 5:
         		command = Commands.SHUTDOWN;
         		break;
         }

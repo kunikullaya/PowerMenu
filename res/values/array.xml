@@ -4,6 +4,7 @@
 		<item>Reboot</item>  
 		<item>Reboot to recovery</item>  
 		<item>Reboot to download</item> 
+		<item>Reboot to bootloader</item> 
 		<item>Hot Reboot</item>  
 		<item>Shutdown</item>   
 	 </string-array>
