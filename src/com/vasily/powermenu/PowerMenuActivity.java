@@ -44,7 +44,7 @@ public class PowerMenuActivity extends Activity {
 					android.R.layout.simple_list_item_1, android.R.id.text1, listViewItems);
 			listView.setAdapter(adapter);
 			if(!RootTools.isBusyboxAvailable()){
-	        	listViewItems[3] = getResources().getString(R.string.missingBusyBoxTitle);
+	        	listViewItems[4] = getResources().getString(R.string.missingBusyBoxTitle);
 	        }
 			listView.setOnItemClickListener(listViewItemClickHandler);
 			
@@ -147,7 +147,7 @@ public class PowerMenuActivity extends Activity {
   * Performs one of the 5 actions.  
   */
     private boolean doTheAction(){
-    	String command = null;
+    	String command = "";
     	switch (actionID)
         {
         	case 0: 
@@ -163,13 +163,17 @@ public class PowerMenuActivity extends Activity {
         		command = Commands.BOOTLOADER;
         		break;
         	case 4:
-        		command = Commands.HOTBOOT;
+                command = Commands.HOTBOOT;
+
         		break;	
         	case 5:
         		command = Commands.SHUTDOWN;
         		break;
         }
-    	Utils.ExecuteCommand(command);
+        if(command !=""){
+            Utils.ExecuteCommand(command);
+        }
+
     	return false;
       }
   

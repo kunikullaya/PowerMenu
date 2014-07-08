@@ -13,7 +13,7 @@ public class Utils {
 		  try {
 			   
 			 CommandCapture rootCommand = new CommandCapture(0,command);
-			 RootTools.getShell(true).add(rootCommand).waitForFinish(); 
+			 RootTools.getShell(true).add(rootCommand).getExitCode();
 	 	 	} 
 	 	 catch (Exception ex) {
 	            Log.i("PowerMenu", "Could not perform action", ex);
