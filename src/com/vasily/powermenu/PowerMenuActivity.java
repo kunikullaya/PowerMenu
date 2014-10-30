@@ -1,13 +1,17 @@
 package com.vasily.powermenu;
 
-import com.stericson.RootTools.RootTools; 
- 
-import android.os.Bundle;  
+import com.stericson.RootTools.RootTools;
+
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.app.Activity;  
 import android.app.AlertDialog;
 import android.content.DialogInterface; 
-import android.content.SharedPreferences;  
-import android.view.Menu;  
+import android.content.SharedPreferences;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,8 +19,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter; 
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.ListView;   
-import android.widget.Switch; 
+import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.Switch;
 
 
 public class PowerMenuActivity extends Activity {
@@ -25,7 +30,7 @@ public class PowerMenuActivity extends Activity {
 	 * Global Decelerations?  
 	 */
 	private String[] listViewItems;
-	private int actionID;
+	private int actionID = -1;
 	private boolean showPopup = true;
 	 private static boolean result;
 	 private Switch preferenceSwitch;
@@ -114,14 +119,16 @@ public class PowerMenuActivity extends Activity {
     @Override
  	public boolean onCreateOptionsMenu(Menu menu) { 
     	getMenuInflater().inflate(R.menu.menu_settings, menu);
-    	 
+
+
         // Get widget's instance
      	preferenceSwitch = (Switch)menu.findItem(R.id.menu_item_switch).getActionView().findViewById(R.id.preference_switch);;
 		preferenceSwitch.setOnCheckedChangeListener(this.preferenceSwitchHandler);
 	    SharedPreferences sharedPref = getSharedPreferences("com.vasily.powermenu", MODE_PRIVATE);
  		showPopup = sharedPref.getBoolean("askBeforePerformAction", true);
  		preferenceSwitch.setChecked(sharedPref.getBoolean("askBeforePerformAction", true)); 
-        return super.onCreateOptionsMenu(menu); 
+        return super.onCreateOptionsMenu(menu);
+
  		 
   }
     

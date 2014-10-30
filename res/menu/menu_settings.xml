@@ -4,5 +4,6 @@
         android:title=""
         android:showAsAction="always"
         android:actionLayout="@layout/actionbar_switch"
-    />   
+    />
+
 </menu>
