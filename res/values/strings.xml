@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Power Menu</string>
+    <string name="app_name">PowerMenu</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Power Menu</string>
     <string name="ask_before">Confirmation Dailog?</string>

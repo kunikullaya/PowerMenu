@@ -1,21 +1,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vasily.powermenu"
-    android:versionCode="7"
-    android:versionName="2.2" >
+    android:versionCode="8"
+    android:versionName="2.2.2" >
     <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19" />
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
     <application
         android:icon="@drawable/launcher_icon"
-        android:label="@string/app_name"
+        android:label="@string/title_activity_main"
         android:theme="@style/AppTheme" 
         android:allowBackup="false">
         <activity
             android:name=".PowerMenuActivity"
-            android:label="@string/app_name"  >
+            android:label="@string/title_activity_main"  >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter> 
+            </intent-filter>
         </activity>
     </application>
 </manifest>
