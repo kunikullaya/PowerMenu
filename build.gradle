@@ -13,8 +13,8 @@ dependencies {
 }
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "19.1.0"
+    compileSdkVersion 21
+    buildToolsVersion "21.1.1"
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -46,7 +46,7 @@ android {
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
     }
-    buildToolsVersion '20.0.0'
+    buildToolsVersion '21.1.1'
     defaultConfig {}
     productFlavors {
     }
