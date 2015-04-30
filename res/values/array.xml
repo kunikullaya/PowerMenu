@@ -2,10 +2,11 @@
 <resources>  
 	<string-array name="optionArray">  
 		<item>Reboot</item>  
-		<item>Reboot to recovery</item>  
+		<item>Reboot to recovery</item>
 		<item>Reboot to download</item> 
 		<item>Reboot to bootloader</item> 
-		<item>Hot Reboot</item>  
-		<item>Shutdown</item>   
+		<item>Hot Reboot</item>
+        <item>SafeBoot</item>
+        <item>Shutdown</item>
 	 </string-array>
 </resources>

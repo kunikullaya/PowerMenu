@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">电源菜单</string>
+    <string name="ask_before">对话框确认?</string>
+    <string name="ask_before_description">在执行操作前显示对话框</string>
+    <string name="confirmation_text">确认</string>
+    <string name="dialog_exit">退出</string>
+    <string name="dialog_false">不</string>
+    <string name="dialog_ok">好的</string>
+    <string name="dialog_true">是</string>
+    <string name="menu_settings">设置</string>
+    <string name="missingBusyBoxMessage">热重启缺busybox，正常重启。</string>
+    <string name="missingBusyBoxTitle">缺busybox（正常重启）。</string>
+    <string name="no_root_title">需要Root权限</string>
+    <string name="settings">偏好</string>
+    <string name="title_activity_main">电源菜单</string>
+</resources>
