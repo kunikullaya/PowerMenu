@@ -6,7 +6,7 @@
 		<item>Reinicie para Download</item> 
 		<item>Reinicie a bootloader</item> 
 		<item>Reiniciar Hot</item>
-        <item>SafeBoot</item>
+        <item>inicialização segura</item>
 		<item>Fechamento</item>   
 	 </string-array>
 </resources>

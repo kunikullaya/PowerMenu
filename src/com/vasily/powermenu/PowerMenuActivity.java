@@ -21,9 +21,6 @@ import android.widget.Switch;
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.execution.CommandCapture;
 
-import java.net.URL;
-
-
 public class PowerMenuActivity extends Activity {
 
     /**
@@ -32,7 +29,6 @@ public class PowerMenuActivity extends Activity {
     private String[] listViewItems;
     private int actionID = -1;
     private boolean showPopup = true;
-    private static boolean result;
     private Switch preferenceSwitch;
 
     /**
@@ -71,7 +67,7 @@ public class PowerMenuActivity extends Activity {
     /**
      * Displays a Confirmation Dialog before doing an action.
      */
-    public boolean confirmAndDoDialog(String action) {
+    public void confirmAndDoDialog(String action) {
         AlertDialog.Builder builder = new AlertDialog.Builder(PowerMenuActivity.this);
         builder.setTitle("Confirm " + action);
         builder.setPositiveButton(R.string.dialog_true, new DialogInterface.OnClickListener() {
@@ -86,7 +82,6 @@ public class PowerMenuActivity extends Activity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
-        return result;
     }
 
 
@@ -100,7 +95,6 @@ public class PowerMenuActivity extends Activity {
             } else {
                 editor.putBoolean("askBeforePerformAction", false);
                 editor.commit();
-
             }
             SharedPreferences sharedPref = getSharedPreferences("com.vasily.powermenu", MODE_PRIVATE);
             showPopup = sharedPref.getBoolean("askBeforePerformAction", true);
@@ -144,17 +138,17 @@ public class PowerMenuActivity extends Activity {
     private class PerformTask extends AsyncTask<String,Void,Void> {
         @Override
         protected Void doInBackground(String... params) {
-        String command = params[0];
-        if (command != "") {
-            try {
-                CommandCapture rootCommand = new CommandCapture(0,command);
-                RootTools.getShell(true).add(rootCommand).getExitCode();
+            String command = params[0];
+            if (command != "") {
+                try {
+                    CommandCapture rootCommand = new CommandCapture(0,command);
+                    RootTools.getShell(true).add(rootCommand).getExitCode();
+                }
+                catch (Exception ex) {
+                    Log.i("PowerMenu", "Could not perform action", ex);
+                }
             }
-            catch (Exception ex) {
-                Log.i("PowerMenu", "Could not perform action", ex);
-            }
-        }
-         return null;
+             return null;
         }
     }
 
@@ -180,8 +174,7 @@ public class PowerMenuActivity extends Activity {
                 command = Commands.HOTBOOT;
                break;
             case 5:
-                new PerformTask().execute(Commands.SET_SAFEBOOT);
-                command = Commands.REBOOT;
+                command = Commands.SAFEBOOT;
                 break;
             case 6:
                 command = Commands.SHUTDOWN;

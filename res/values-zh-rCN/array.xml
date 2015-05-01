@@ -6,7 +6,7 @@
 		<item>重启到下载模式</item>
 		<item>重启到引导模式</item>
 		<item>热重启</item>
-        <item>SafeBoot</item>
+        <item>安全启动</item>
 		<item>关机</item>
 	 </string-array>
 </resources>
