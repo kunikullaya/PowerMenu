@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="optionArray">
+        <item>Reinicio</item>
+        <item>Reinicio en modo recovery</item>
+        <item>Reinicio en modo download</item>
+        <item>Reinicio en modo bootloader</item>
+        <item>Reinicio suave</item>
+        <item>Reinicio seguro</item>
+        <item>Apagar</item>
+    </string-array>
+</resources>

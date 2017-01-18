@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">PowerMenu</string>
+    <string name="menu_settings">Ajustes</string>
+    <string name="title_activity_main">Power Menu</string>
+    <string name="ask_before">Diálogos de confirmación?</string>
+    <string name="ask_before_description">Muestra una ventana de confirmación antes de realizar la acción.</string>
+    <string name="settings">Preferencias</string>
+	<string name="dialog_true">Sí</string>
+	<string name="dialog_ok">Ok</string>
+	<string name="dialog_false">No</string>
+	<string name="dialog_exit">Salir</string>
+	<string name="no_root_title">Se requiere acceso root</string>
+	<string name="missingBusyBoxTitle">No se encontró Busybox (reinicio normal)</string>
+	<string name="missingBusyBoxMessage">El reinicio suave necesita Busybox. Reiniciando en modo normal.</string>
+	<string name="confirmation_text">Confirmar</string>
+</resources>
