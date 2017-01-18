@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">PowerMenu</string>
+    <string name="title_activity_main">Power Menu</string>
+     <string name="menu_settings">Setările</string>
+<string name="ask_before">Dialog de confirmare?</string>
+<string name="ask_before_description">Se afiseaza un dialog inainte de a efectua operatiunea</string>
+<string name="settings">Preferinte</string>
+<string name="dialog_true">Da</string>
+<string name="dialog_ok">OK</string>
+<string name="dialog_false">Nu</string>
+<string name="dialog_exit">Iesire</string> 
+<string name="no_root_title">Necesita Root</string> 
+<string name="missingBusyBoxTitle">Lipseste Busybox(Repornire normala)</string>
+<string name="missingBusyBoxMessage">HotReboot necesita busybox,Se face repornire normala.</string>
+<string name="confirmation_text">Confirma</string>
+</resources>
